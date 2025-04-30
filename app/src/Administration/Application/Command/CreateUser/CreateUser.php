@@ -12,8 +12,9 @@ final class CreateUser implements Command
         private readonly string $firstname,
         private readonly string $lastname,
         private readonly string $apiKey,
-        private readonly ?string $userName = null
-    ) {}
+        private readonly ?string $userName = null,
+    ) {
+    }
 
     public function getFirstname(): string
     {

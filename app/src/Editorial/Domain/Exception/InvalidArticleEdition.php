@@ -11,7 +11,7 @@ final class InvalidArticleEdition extends \LogicException
     public static function cannotBeEditedFromStatus(string $status): self
     {
         return new self(
-            message: sprintf('Article cannot be edited from status "%s"', $status),
+            message: \sprintf('Article cannot be edited from status "%s"', $status),
             code: self::EXCEPTION_CODE,
         );
     }

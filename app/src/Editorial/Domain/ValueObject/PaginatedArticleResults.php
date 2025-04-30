@@ -7,10 +7,10 @@ namespace App\Editorial\Domain\ValueObject;
 final class PaginatedArticleResults
 {
     public function __construct(
-        private readonly int   $totalResult,
+        private readonly int $totalResult,
         private readonly array $items,
-    )
-    {}
+    ) {
+    }
 
     public function totalResult(): int
     {

@@ -11,11 +11,11 @@ use Webmozart\Assert\Assert;
 final class WriteArticle implements Command
 {
     public function __construct(
-        private readonly string              $title,
-        private readonly string              $content,
-        private readonly int                 $userId,
+        private readonly string $title,
+        private readonly string $content,
+        private readonly int $userId,
         private readonly ?\DateTimeImmutable $releaseDate,
-        private readonly string              $status,
+        private readonly string $status,
     ) {
         Assert::inArray($this->status, Status::ALLOWED_STATUS);
     }

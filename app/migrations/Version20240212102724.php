@@ -26,13 +26,12 @@ final class Version20240212102724 extends AbstractMigration
         // Articles
         $this->addSql('INSERT INTO article (title, content, userId, releaseDate, status) VALUES
             ("Le retour du roi", "Quel film de folie, le suspens est à son comble: Frodon va-t\'il réussir sa quête?", 1, null, "draft"),
-            ("Un nouvel espoir", "Ce film a permis de faire connaître au monde R2D2.", 1, "'.(new \DateTime())->format(DATE_ATOM).'", "published"),
-            ("Retour vers le futur", "Film de zinzin mais le début d\'une trilogie d\'anthologie!", 2, "'.(new \DateTime())->format(DATE_ATOM).'", "published"),
-            ("Le retour du jedi", "Conclusion d\'une trilogie phare de la SF. R2D2 héros de l\'histoire?", 2, "'.(new \DateTime())->sub(new \DateInterval('P2W'))->format(DATE_ATOM).'", "published"),
-            ("2001 L\'Odyssée de l\'espace", "Un peu perché ce film? J\'ai bien aimé la musique.", 3, "'.(new \DateTime())->add(new \DateInterval('P1W'))->format(DATE_ATOM).'", "draft"),
-            ("2001 L\'Odyssée de l\'espace", "Un peu perché ce film? J\'ai bien aimé le.", 3, "'.(new \DateTime())->add(new \DateInterval('P1W'))->format(DATE_ATOM).'", "deleted")
+            ("Un nouvel espoir", "Ce film a permis de faire connaître au monde R2D2.", 1, "' . (new \DateTime())->format(DATE_ATOM) . '", "published"),
+            ("Retour vers le futur", "Film de zinzin mais le début d\'une trilogie d\'anthologie!", 2, "' . (new \DateTime())->format(DATE_ATOM) . '", "published"),
+            ("Le retour du jedi", "Conclusion d\'une trilogie phare de la SF. R2D2 héros de l\'histoire?", 2, "' . (new \DateTime())->sub(new \DateInterval('P2W'))->format(DATE_ATOM) . '", "published"),
+            ("2001 L\'Odyssée de l\'espace", "Un peu perché ce film? J\'ai bien aimé la musique.", 3, "' . (new \DateTime())->add(new \DateInterval('P1W'))->format(DATE_ATOM) . '", "draft"),
+            ("2001 L\'Odyssée de l\'espace", "Un peu perché ce film? J\'ai bien aimé le.", 3, "' . (new \DateTime())->add(new \DateInterval('P1W'))->format(DATE_ATOM) . '", "deleted")
         ');
-
     }
 
     public function down(Schema $schema): void

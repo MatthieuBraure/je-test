@@ -21,9 +21,10 @@ class ConvertToDraftController extends AbstractController
         private readonly CommandBus $commandBus,
         private readonly ValidatorInterface $validator,
         private readonly ArticleRepository $articleRepository,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article/{articleId}/convert-to-draft", name: "editorial.article.convert_to_draft", methods: ["POST"])]
+    #[Route('/api/v1/editorial/article/{articleId}/convert-to-draft', name: 'editorial.article.convert_to_draft', methods: ['POST'])]
     public function __invoke(int $articleId, Request $request): Response
     {
         try {
@@ -34,7 +35,7 @@ class ConvertToDraftController extends AbstractController
 
             $input = $this->generateInput($request);
             $errors = $this->validator->validate($input);
-            if (count($errors) > 0) {
+            if (0 < \count($errors)) {
                 $errorsString = (string) $errors;
 
                 return new Response($errorsString, Response::HTTP_BAD_REQUEST);
@@ -50,7 +51,7 @@ class ConvertToDraftController extends AbstractController
         } catch (ArticleNotFound $articleNotFound) {
             return new Response(
                 content: $articleNotFound->getMessage(),
-                status: $articleNotFound->getCode()
+                status: $articleNotFound->getCode(),
             );
         }
 

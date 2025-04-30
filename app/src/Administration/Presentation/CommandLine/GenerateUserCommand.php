@@ -20,7 +20,7 @@ class GenerateUserCommand extends Command
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly ApiKeyGenerator $apiKeyGenerator,
-        string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }
@@ -39,7 +39,7 @@ class GenerateUserCommand extends Command
         $lastname = $input->getArgument('lastname');
 
         $io = new SymfonyStyle($input, $output);
-        $io->section(sprintf('Creation of user: %s %s', $firstname, $lastname));
+        $io->section(\sprintf('Creation of user: %s %s', $firstname, $lastname));
         $io->newLine();
 
         $apiKey = $this->apiKeyGenerator->generate();
@@ -47,11 +47,11 @@ class GenerateUserCommand extends Command
         $command = new CreateUser(
             $firstname,
             $lastname,
-            $apiKey
+            $apiKey,
         );
         $this->commandBus->handle($command);
 
-        $io->section(sprintf('Creation succeed. Note your apiKey: %s', $apiKey));
+        $io->section(\sprintf('Creation succeed. Note your apiKey: %s', $apiKey));
 
         return Command::SUCCESS;
     }

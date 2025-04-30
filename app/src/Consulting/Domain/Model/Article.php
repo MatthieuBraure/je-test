@@ -7,12 +7,13 @@ namespace App\Consulting\Domain\Model;
 final class Article
 {
     public function __construct(
-        private readonly int                 $id,
-        private readonly string              $title,
-        private readonly string              $content,
-        private readonly User                $user,
+        private readonly int $id,
+        private readonly string $title,
+        private readonly string $content,
+        private readonly User $user,
         private readonly ?\DateTimeImmutable $releaseDate,
-    ) {}
+    ) {
+    }
 
     public function id(): ?int
     {

@@ -11,8 +11,9 @@ class RetrieveArticles
     public function __construct(
         private readonly int $userId,
         private readonly array $status,
-        private readonly ?Paginator $paginator
-    ) {}
+        private readonly ?Paginator $paginator,
+    ) {
+    }
 
     public function userId(): int
     {

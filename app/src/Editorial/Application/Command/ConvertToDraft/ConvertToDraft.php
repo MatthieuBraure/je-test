@@ -11,8 +11,8 @@ final class ConvertToDraft implements Command
     public function __construct(
         private readonly int $articleId,
         private readonly ?\DateTimeImmutable $releaseDate,
-    )
-    {}
+    ) {
+    }
 
     public function articleId(): int
     {

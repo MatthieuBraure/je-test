@@ -41,7 +41,19 @@ services:
         networks:
             - rr-net
 
+    qa:
+        image: jakzal/phpqa:php8.2
+        container_name: qa
+        working_dir: /project
+        init: true
+        command: sh
+        stdin_open: true
+        tty: true
+        volumes:
+            - .:/project:cached
+            - qa-tmp:/tmp
 networks:
     rr-net:
 volumes:
     my-db:
+    qa-tmp:

@@ -15,9 +15,10 @@ use Doctrine\DBAL\Connection;
 class ArticleFinder implements ArticleFinderInterface
 {
     public function __construct(
-        private readonly UserRepository         $userRepository,
-        private readonly Connection             $connection,
-    ){}
+        private readonly UserRepository $userRepository,
+        private readonly Connection $connection,
+    ) {
+    }
 
     public function retrieveArticles(RetrieveArticles $query): PaginatedArticleResults
     {
@@ -39,9 +40,8 @@ class ArticleFinder implements ArticleFinderInterface
 
         $results = [];
         foreach ($data as $rawArticle) {
-
             $releaseDate = $rawArticle['releaseDate'];
-            if (is_string($releaseDate)) {
+            if (\is_string($releaseDate)) {
                 $releaseDate = new \DateTimeImmutable($releaseDate);
             }
 
@@ -86,10 +86,10 @@ class ArticleFinder implements ArticleFinderInterface
         }
         $searchStatus = [];
         foreach ($query->status() as $status) {
-            $searchStatus[] = sprintf("'%s'", $status);
+            $searchStatus[] = \sprintf("'%s'", $status);
         }
 
-        $sql .= sprintf(<<< 'SQL'
+        $sql .= \sprintf(<<< 'SQL'
          AND status IN (%s)
         SQL, implode(',', $searchStatus));
 
@@ -105,9 +105,9 @@ class ArticleFinder implements ArticleFinderInterface
         }
 
         if ($paginator->getItemsPerPage()) {
-            $sql .= sprintf('LIMIT %d ', $paginator->getItemsPerPage());
+            $sql .= \sprintf('LIMIT %d ', $paginator->getItemsPerPage());
             if ($paginator->getPage()) {
-                $sql .= sprintf('OFFSET %d ', $paginator->getFirstResultOffset());
+                $sql .= \sprintf('OFFSET %d ', $paginator->getFirstResultOffset());
             }
         }
 

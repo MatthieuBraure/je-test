@@ -11,8 +11,9 @@ use Symfony\Component\Messenger\MessageBusInterface;
 class CommandBus implements CommandBusInterface
 {
     public function __construct(
-      private readonly MessageBusInterface $bus
-    ) {}
+        private readonly MessageBusInterface $bus,
+    ) {
+    }
 
     public function handle(Command $command): void
     {

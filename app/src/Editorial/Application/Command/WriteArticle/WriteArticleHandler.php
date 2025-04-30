@@ -15,19 +15,20 @@ use App\Editorial\Domain\Repository\UserRepository;
 class WriteArticleHandler implements CommandHandler
 {
     public function __construct(
-        private readonly UserRepository    $userRepository,
+        private readonly UserRepository $userRepository,
         private readonly ArticleRepository $articleRepository,
-    ){}
+    ) {
+    }
 
     public function __invoke(WriteArticle $command): void
     {
         $user = $this->userRepository->get($command->userId());
 
-        if (Status::DRAFT === $command->status()) { $article = $this->createDraftArticle($command, $user); }
-
-        else if (Status::PUBLISHED === $command->status()) { $article = $this->createPublishedArticle($command, $user); }
-
-        else (throw StatusNotAllowed::create($command->status()));
+        if (Status::DRAFT === $command->status()) {
+            $article = $this->createDraftArticle($command, $user);
+        } elseif (Status::PUBLISHED === $command->status()) {
+            $article = $this->createPublishedArticle($command, $user);
+        } else (throw StatusNotAllowed::create($command->status()));
 
         $this->articleRepository->save($article);
     }

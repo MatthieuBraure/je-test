@@ -14,27 +14,27 @@ use Symfony\Component\Security\Core\User\UserInterface;
 final class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     public function __construct(
-
-        #[ORM\Column(name: "id", type: "integer")]
+        #[ORM\Column(name: 'id', type: 'integer')]
         #[ORM\Id]
-        #[ORM\GeneratedValue(strategy: "AUTO")]
+        #[ORM\GeneratedValue(strategy: 'AUTO')]
         private readonly ?int $id,
 
-        #[ORM\Column(name: "firstname", type: "string", length: 100)]
+        #[ORM\Column(name: 'firstname', type: 'string', length: 100)]
         private readonly string $firstname,
 
-        #[ORM\Column(name: "lastname", type: "string", length: 100)]
+        #[ORM\Column(name: 'lastname', type: 'string', length: 100)]
         private readonly string $lastname,
 
-        #[ORM\Column(name: "userName", type: "string", length: 100)]
+        #[ORM\Column(name: 'userName', type: 'string', length: 100)]
         private readonly string $userName,
 
-        #[ORM\Column(name: "apiKey", type: "string", length: 255)]
+        #[ORM\Column(name: 'apiKey', type: 'string', length: 255)]
         private readonly string $apiKey,
 
-        #[ORM\Column(name: "password", type: "string", length: 255)]
+        #[ORM\Column(name: 'password', type: 'string', length: 255)]
         private ?string $password,
-    ) {}
+    ) {
+    }
 
     public static function create(string $firstname, string $lastname, string $userName, string $apiKey, ?string $password): self
     {

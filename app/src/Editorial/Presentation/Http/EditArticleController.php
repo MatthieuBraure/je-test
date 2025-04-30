@@ -19,8 +19,9 @@ class EditArticleController extends AbstractController
 {
     public function __construct(
         private readonly ArticleRepository $articleRepository,
-        private readonly CommandBus        $commandBus,
-    ) {}
+        private readonly CommandBus $commandBus,
+    ) {
+    }
 
     #[Route('/editorial/article/{identifier}/edit', name: 'editorial.article.edit')]
     #[IsGranted('author', 'identifier')]

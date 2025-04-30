@@ -22,9 +22,10 @@ class RetrieveArticlesController extends AbstractController
     public function __construct(
         private readonly ArticleFinder $articleFinder,
         private readonly ValidatorInterface $validator,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article", name: "editorial.article.collection.get", methods: ["GET"])]
+    #[Route('/api/v1/editorial/article', name: 'editorial.article.collection.get', methods: ['GET'])]
     public function __invoke(Request $request): Response
     {
         /** @var User $user */
@@ -34,7 +35,7 @@ class RetrieveArticlesController extends AbstractController
 
         $errors = $this->validator->validate($input);
 
-        if (count($errors) > 0) {
+        if (0 < \count($errors)) {
             $errorsString = (string) $errors;
 
             return new Response($errorsString, Response::HTTP_BAD_REQUEST);
@@ -44,7 +45,7 @@ class RetrieveArticlesController extends AbstractController
         if (null !== $input->page && null !== $input->itemPerPage) {
             $paginator = new Paginator(
                 page: $input->page,
-                itemsPerPage: $input->itemPerPage
+                itemsPerPage: $input->itemPerPage,
             );
         }
 

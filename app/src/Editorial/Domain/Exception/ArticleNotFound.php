@@ -11,7 +11,7 @@ final class ArticleNotFound extends \InvalidArgumentException
     public static function create(int $articleId): self
     {
         return new self(
-            message: sprintf('Unknown article for id %s', $articleId),
+            message: \sprintf('Unknown article for id %s', $articleId),
             code: self::EXCEPTION_CODE,
         );
     }

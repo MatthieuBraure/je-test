@@ -13,7 +13,8 @@ use Doctrine\DBAL\Connection;
 class UserRepository implements UserRepositoryInterface
 {
     public function __construct(private readonly Connection $connection, private readonly UserFinder $userFinder)
-    {}
+    {
+    }
 
     public function save(User $user): void
     {
@@ -22,10 +23,10 @@ class UserRepository implements UserRepositoryInterface
             [
                 'firstname' => $user->getFirstname(),
                 'lastname' => $user->getLastname(),
-                "userName" => $user->getUserName(),
+                'userName' => $user->getUserName(),
                 'apiKey' => $user->getApiKey(),
-                'password' => $user->getPassword()
-            ]
+                'password' => $user->getPassword(),
+            ],
         );
     }
 

@@ -12,7 +12,8 @@ use Doctrine\DBAL\Connection;
 class UserRepository implements UserRepositoryInterface
 {
     public function __construct(private readonly Connection $connection)
-    {}
+    {
+    }
 
     public function get(int $userId): User
     {
@@ -27,7 +28,7 @@ class UserRepository implements UserRepositoryInterface
             throw UserNotFound::create($userId);
         }
 
-        /** @var array<string|int> $data */
+        /* @var array<string|int> $data */
         return User::create(
             id: (int) $data['id'],
             firstname: (string) $data['firstname'],

@@ -10,7 +10,8 @@ use App\Editorial\Domain\Repository\ArticleRepository;
 class EditArticleHandler implements CommandHandler
 {
     public function __construct(private readonly ArticleRepository $articleRepository)
-    {}
+    {
+    }
 
     public function __invoke(EditArticle $command): void
     {

@@ -11,7 +11,8 @@ use Doctrine\DBAL\Connection;
 class UserFinder implements UserFinderInterface
 {
     public function __construct(private readonly Connection $connection)
-    {}
+    {
+    }
 
     public function findByApiKey(string $apiKey): ?User
     {
@@ -27,13 +28,13 @@ class UserFinder implements UserFinderInterface
             return null;
         }
 
-        /** @var array<string|int> $data */
+        /* @var array<string|int> $data */
         return new User(
             id: (int) $data['id'],
             firstname: (string) $data['firstname'],
             lastname: (string) $data['lastname'],
             userName: (string) $data['userName'],
-            apiKey:  (string) $data['apiKey'],
+            apiKey: (string) $data['apiKey'],
             password: (string) $data['password'],
         );
     }
@@ -51,13 +52,13 @@ class UserFinder implements UserFinderInterface
             return null;
         }
 
-        /** @var array<string|int> $data */
+        /* @var array<string|int> $data */
         return new User(
             id: (int) $data['id'],
             firstname: (string) $data['firstname'],
             lastname: (string) $data['lastname'],
             userName: (string) $data['userName'],
-            apiKey:  (string) $data['apiKey'],
+            apiKey: (string) $data['apiKey'],
             password: (string) $data['password'],
         );
     }

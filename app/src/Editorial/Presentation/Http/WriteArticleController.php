@@ -18,8 +18,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class WriteArticleController extends AbstractController
 {
     public function __construct(
-        private readonly CommandBus $commandBus
-    ) {}
+        private readonly CommandBus $commandBus,
+    ) {
+    }
 
     #[Route('/editorial/article/write', name: 'editorial.article.write')]
     public function __invoke(Request $request): Response

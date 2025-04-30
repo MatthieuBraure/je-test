@@ -18,7 +18,6 @@ final class Version20240209132943 extends AbstractMigration
     {
         // Prevent an accidental automatic deployment.
         if ($this->sm->tablesExist(['user', 'article'])) {
-
             return;
         }
 

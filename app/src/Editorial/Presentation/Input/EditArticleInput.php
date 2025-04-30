@@ -21,10 +21,10 @@ class EditArticleInput
                 constraints: [new Assert\NotBlank(), new Assert\Type('string'), new Assert\Length([
                     'max' => Article::CHARACTER_TITLE_LIMIT,
                     'maxMessage' => 'Your first title cannot be longer than {{ limit }} characters',
-                ])]
+                ])],
             )->addPropertyConstraints(
                 property: 'content',
-                constraints: [new Assert\NotBlank(), new Assert\Type('string')]
+                constraints: [new Assert\NotBlank(), new Assert\Type('string')],
             );
     }
 }

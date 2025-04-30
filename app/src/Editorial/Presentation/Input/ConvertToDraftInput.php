@@ -11,15 +11,15 @@ class ConvertToDraftInput
 {
     public function __construct(
         public $releaseDate,
-    )
-    {}
+    ) {
+    }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
     {
         $metadata
             ->addPropertyConstraints(
                 property: 'releaseDate',
-                constraints: [new Assert\DateTime(), new Assert\LessThan('today')]
+                constraints: [new Assert\DateTime(), new Assert\LessThan('today')],
             );
     }
 }

@@ -11,7 +11,7 @@ final class UserNotFound extends \InvalidArgumentException
     public static function createByUserName(string $userName): self
     {
         return new self(
-            message: sprintf('Unknown user for userName %s', $userName),
+            message: \sprintf('Unknown user for userName %s', $userName),
             code: self::EXCEPTION_CODE,
         );
     }

@@ -20,16 +20,17 @@ class WriteArticleController extends AbstractController
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly ValidatorInterface $validator,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article", name: "api.editorial.article.write", methods: ["POST"])]
+    #[Route('/api/v1/editorial/article', name: 'api.editorial.article.write', methods: ['POST'])]
     public function __invoke(Request $request): Response
     {
         $input = $this->generateInput($request);
 
         $errors = $this->validator->validate($input);
 
-        if (count($errors) > 0) {
+        if (0 < \count($errors)) {
             $errorsString = (string) $errors;
 
             return new Response($errorsString, Response::HTTP_BAD_REQUEST);
@@ -43,7 +44,7 @@ class WriteArticleController extends AbstractController
             content: $input->content,
             userId: $user->getId(),
             releaseDate: null === $input->releaseDate ? null : new \DateTimeImmutable($input->releaseDate),
-            status: $input->status
+            status: $input->status,
         );
 
         $this->commandBus->handle($command);
@@ -59,7 +60,7 @@ class WriteArticleController extends AbstractController
         $article->title = $data['title'] ?? null;
         $article->content = $data['content'] ?? null;
         $article->releaseDate = $data['releaseDate'] ?? null;
-        $article->status = $data['status']?? null;
+        $article->status = $data['status'] ?? null;
 
         return $article;
     }

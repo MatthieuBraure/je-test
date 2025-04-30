@@ -14,7 +14,8 @@ use Doctrine\DBAL\Connection;
 class ArticleRepository implements ArticleRepositoryInterface
 {
     public function __construct(private readonly Connection $connection, private readonly UserRepository $userRepository)
-    {}
+    {
+    }
 
     public function get(int $articleId): Article
     {
@@ -46,7 +47,6 @@ class ArticleRepository implements ArticleRepositoryInterface
             throw ArticleNotFound::create($articleId);
         }
 
-
         return $this->createArticleModel($data, $articleId);
     }
 
@@ -61,7 +61,7 @@ class ArticleRepository implements ArticleRepositoryInterface
                     'userId' => $article->user()->id(),
                     'releaseDate' => $article->releaseDate()?->format(DATE_ATOM),
                     'status' => $article->status(),
-                ]
+                ],
             );
 
             return;
@@ -76,7 +76,7 @@ class ArticleRepository implements ArticleRepositoryInterface
                 'releaseDate' => $article->releaseDate()?->format(DATE_ATOM),
                 'status' => $article->status(),
             ],
-            ['id' => $article->id()]
+            ['id' => $article->id()],
         );
     }
 
@@ -89,7 +89,7 @@ class ArticleRepository implements ArticleRepositoryInterface
             $releaseDate = new \DateTimeImmutable($releaseDate);
         }
 
-        /** @var array<string|int> $data */
+        /* @var array<string|int> $data */
         return Article::create(
             id: (int) $data['id'],
             title: (string) $data['title'],

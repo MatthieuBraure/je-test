@@ -17,9 +17,10 @@ class DeleteArticleController extends AbstractController
     public function __construct(
         private readonly CommandBus $commandBus,
         private readonly ArticleRepository $articleRepository,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article/{articleId}", name: "editorial.article.delete", methods: ["DELETE"])]
+    #[Route('/api/v1/editorial/article/{articleId}', name: 'editorial.article.delete', methods: ['DELETE'])]
     public function __invoke(int $articleId): Response
     {
         try {
@@ -35,7 +36,7 @@ class DeleteArticleController extends AbstractController
         } catch (ArticleNotFound $articleNotFound) {
             return new Response(
                 content: $articleNotFound->getMessage(),
-                status: $articleNotFound->getCode()
+                status: $articleNotFound->getCode(),
             );
         }
 

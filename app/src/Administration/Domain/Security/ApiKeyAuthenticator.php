@@ -20,7 +20,8 @@ use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPasspor
 class ApiKeyAuthenticator extends AbstractAuthenticator
 {
     public function __construct(private readonly UserFinder $userFinder)
-    {}
+    {
+    }
 
     public function supports(Request $request): ?bool
     {
@@ -51,7 +52,7 @@ class ApiKeyAuthenticator extends AbstractAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         $data = [
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+            'message' => strtr($exception->getMessageKey(), $exception->getMessageData()),
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);

@@ -7,10 +7,11 @@ namespace App\Consulting\Domain\Model;
 final class User
 {
     public function __construct(
-        private readonly int    $id,
+        private readonly int $id,
         private readonly string $firstname,
         private readonly string $lastname,
-    ) {}
+    ) {
+    }
 
     public function id(): int
     {

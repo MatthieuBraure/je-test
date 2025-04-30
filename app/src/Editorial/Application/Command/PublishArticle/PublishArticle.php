@@ -9,7 +9,8 @@ use App\Core\Application\Command\Command;
 final class PublishArticle implements Command
 {
     public function __construct(private readonly int $articleId)
-    {}
+    {
+    }
 
     public function articleId(): int
     {

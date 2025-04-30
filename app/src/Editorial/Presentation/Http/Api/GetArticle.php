@@ -17,9 +17,10 @@ class GetArticle extends AbstractController
 {
     public function __construct(
         private readonly ArticleRepository $articleRepository,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article/{articleId}", name: "editorial.article.get", methods: ["GET"])]
+    #[Route('/api/v1/editorial/article/{articleId}', name: 'editorial.article.get', methods: ['GET'])]
     public function __invoke(int $articleId): Response
     {
         try {
@@ -33,11 +34,10 @@ class GetArticle extends AbstractController
             }
 
             return new JsonResponse(Article::fromModel($article), Response::HTTP_OK);
-
         } catch (ArticleNotFound $articleNotFound) {
             return new Response(
                 content: $articleNotFound->getMessage(),
-                status: $articleNotFound->getCode()
+                status: $articleNotFound->getCode(),
             );
         }
     }

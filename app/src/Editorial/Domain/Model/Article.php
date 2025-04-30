@@ -12,12 +12,12 @@ final class Article
     public const CHARACTER_TITLE_LIMIT = 128;
 
     private function __construct(
-        private readonly ?int       $id,
-        private string              $title,
-        private string              $content,
-        private readonly User       $user,
+        private readonly ?int $id,
+        private string $title,
+        private string $content,
+        private readonly User $user,
         private ?\DateTimeImmutable $releaseDate,
-        private string              $status,
+        private string $status,
     ) {
         $this->validate();
     }
@@ -29,8 +29,7 @@ final class Article
         User $user,
         ?\DateTimeImmutable $releaseDate,
         string $status,
-    ): self
-    {
+    ): self {
         return new self(
             id: $id,
             title: $title,
@@ -46,8 +45,7 @@ final class Article
         string $content,
         User $user,
         ?\DateTimeImmutable $releaseDate,
-    ): self
-    {
+    ): self {
         return new self(
             id: null,
             title: $title,
@@ -62,8 +60,7 @@ final class Article
         string $title,
         string $content,
         User $user,
-    ): self
-    {
+    ): self {
         return new self(
             id: null,
             title: $title,
@@ -87,7 +84,7 @@ final class Article
     public function convertToDraft(?\DateTimeImmutable $releaseDate): void
     {
         if (Status::DRAFT === $this->status) {
-            //Idempotency
+            // Idempotency
             return;
         }
 
@@ -104,7 +101,7 @@ final class Article
     public function publish(): void
     {
         if (Status::PUBLISHED === $this->status) {
-            //Idempotency
+            // Idempotency
             return;
         }
 
@@ -121,7 +118,7 @@ final class Article
     public function delete(): void
     {
         if (Status::DELETED === $this->status) {
-            //Idempotency
+            // Idempotency
             return;
         }
 
@@ -164,7 +161,7 @@ final class Article
             value: $this->title,
             min: 0,
             max: self::CHARACTER_TITLE_LIMIT,
-            message: sprintf('Title cannot exceed %s characters.', self::CHARACTER_TITLE_LIMIT)
+            message: \sprintf('Title cannot exceed %s characters.', self::CHARACTER_TITLE_LIMIT),
         );
 
         if (null !== $this->releaseDate && Status::DRAFT === $this->status) {

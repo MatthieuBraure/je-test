@@ -3,6 +3,7 @@ DOCKER_COMP = docker compose
 
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec app
+QA_CONT = $(DOCKER_COMP) exec qa
 
 # Executables
 PHP      = $(PHP_CONT) php
@@ -55,3 +56,9 @@ install: ## install the project
 install: start vendor
 install:
 	@$(SYMFONY) d:m:m --no-interaction
+
+
+## —— QA 🧐 ————————————————————————————————————————————————————————————————
+php-cs-fixer: ## Run php-cs-fixer
+php-cs-fixer:
+	@$(QA_CONT) php-cs-fixer fix

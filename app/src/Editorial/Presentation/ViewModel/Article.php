@@ -10,12 +10,12 @@ use App\Editorial\Domain\Model\User;
 final class Article implements \JsonSerializable
 {
     private function __construct(
-        private readonly int                 $id,
-        private readonly string              $title,
-        private readonly string              $content,
-        private readonly User                $author,
+        private readonly int $id,
+        private readonly string $title,
+        private readonly string $content,
+        private readonly User $author,
         private readonly ?\DateTimeImmutable $releaseDate,
-        private readonly string              $status,
+        private readonly string $status,
     ) {
     }
 
@@ -31,13 +31,13 @@ final class Article implements \JsonSerializable
         );
     }
 
-    public function toArray() :array
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
-            'author' => $this->author->firstname().' '.$this->author->lastname(),
+            'author' => $this->author->firstname() . ' ' . $this->author->lastname(),
             'releaseDate' => $this->releaseDate?->format(DATE_ATOM),
             'status' => $this->status,
         ];

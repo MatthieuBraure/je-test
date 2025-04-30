@@ -11,7 +11,7 @@ final class StatusNotAllowed extends \InvalidArgumentException
     public static function create(string $errorStatus): self
     {
         return new self(
-            message: sprintf(format: 'Unknown status %s for article creation', values: $errorStatus),
+            message: \sprintf(format: 'Unknown status %s for article creation', values: $errorStatus),
             code: self::EXCEPTION_CODE,
         );
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Administration\Presentation\Http;
 
 use App\Administration\Domain\Generator\ApiKeyGenerator;
@@ -20,7 +22,8 @@ class RegistrationController extends AbstractController
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly ApiKeyGenerator $apiKeyGenerator,
-    ) {}
+    ) {
+    }
 
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, LoginAuthenticator $authenticator): Response
@@ -34,8 +37,8 @@ class RegistrationController extends AbstractController
             $newUser->setPassword(
                 $userPasswordHasher->hashPassword(
                     $newUser,
-                    $form->get('plainPassword')->getData()
-                )
+                    $form->get('plainPassword')->getData(),
+                ),
             );
             $this->userRepository->save($newUser);
             $newUser = $this->userRepository->getByUserName($newUser->getUserName());
@@ -43,7 +46,7 @@ class RegistrationController extends AbstractController
             return $userAuthenticator->authenticateUser(
                 $newUser,
                 $authenticator,
-                $request
+                $request,
             );
         }
 

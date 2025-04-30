@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Administration\Domain\Security;
 
 use App\Administration\Domain\Finder\UserFinder;
@@ -26,8 +28,9 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly UserFinder            $userFinder,
-    ){}
+        private readonly UserFinder $userFinder,
+    ) {
+    }
 
     public function authenticate(Request $request): Passport
     {
@@ -47,7 +50,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
                 new RememberMeBadge(),
-            ]
+            ],
         );
     }
 

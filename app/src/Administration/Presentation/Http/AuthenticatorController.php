@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Administration\Presentation\Http;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

@@ -10,10 +10,10 @@ use App\Editorial\Domain\ValueObject\PaginatedArticleResults;
 final class ArticleCollection implements \JsonSerializable
 {
     public function __construct(
-        private readonly Paginator               $paginator,
+        private readonly Paginator $paginator,
         private readonly PaginatedArticleResults $paginatedResults,
-    )
-    {}
+    ) {
+    }
 
     public function toArray(): array
     {
@@ -22,7 +22,7 @@ final class ArticleCollection implements \JsonSerializable
             $items[] = Article::fromModel($article);
         }
 
-        $totalPage = ceil($this->paginatedResults->totalResult()/$this->paginator->getItemsPerPage());
+        $totalPage = ceil($this->paginatedResults->totalResult() / $this->paginator->getItemsPerPage());
 
         return [
             'page' => $this->paginator->getPage(),

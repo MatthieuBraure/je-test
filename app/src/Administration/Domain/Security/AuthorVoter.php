@@ -14,8 +14,9 @@ class AuthorVoter extends Voter
     private const ATTRIBUTE = 'author';
 
     public function __construct(
-        private readonly ArticleRepository $articleRepository
-    ) {}
+        private readonly ArticleRepository $articleRepository,
+    ) {
+    }
 
     protected function supports(string $attribute, mixed $subject): bool
     {

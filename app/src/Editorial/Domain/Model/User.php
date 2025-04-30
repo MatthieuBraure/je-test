@@ -7,10 +7,11 @@ namespace App\Editorial\Domain\Model;
 final class User
 {
     private function __construct(
-        private readonly int    $id,
+        private readonly int $id,
         private readonly string $firstname,
         private readonly string $lastname,
-    ) {}
+    ) {
+    }
 
     public static function create(int $id, string $firstname, string $lastname): self
     {

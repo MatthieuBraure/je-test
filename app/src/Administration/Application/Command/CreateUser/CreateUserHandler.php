@@ -11,7 +11,8 @@ use App\Core\Domain\Model\User;
 class CreateUserHandler implements CommandHandler
 {
     public function __construct(private readonly UserRepository $userRepository)
-    {}
+    {
+    }
 
     public function __invoke(CreateUser $command): void
     {
@@ -20,7 +21,7 @@ class CreateUserHandler implements CommandHandler
             lastname: $command->getLastname(),
             userName: $command->getUserName() ?? $command->getFirstname() . '-' . $command->getLastname(),
             apiKey: $command->getApiKey(),
-            password: null
+            password: null,
         );
 
         $this->userRepository->save($user);

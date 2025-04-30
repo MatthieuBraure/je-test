@@ -14,8 +14,8 @@ class RetrieveArticlesInput
         public $status,
         public $page,
         public $itemPerPage,
-    )
-    {}
+    ) {
+    }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void
     {
@@ -26,17 +26,17 @@ class RetrieveArticlesInput
                     new Assert\Type('array'),
                     new Assert\All(
                         new Assert\ExpressionSyntax(
-                            ['allowedVariables' => Status::ALLOWED_STATUS,],
-                            sprintf('Status not allowed, allowed status is %s', implode(separator: ' or ', array: Status::ALLOWED_STATUS))
-                        )
-                    )
-                ]
+                            ['allowedVariables' => Status::ALLOWED_STATUS],
+                            \sprintf('Status not allowed, allowed status is %s', implode(separator: ' or ', array: Status::ALLOWED_STATUS)),
+                        ),
+                    ),
+                ],
             )->addPropertyConstraints(
                 property: 'page',
-                constraints: [new Assert\Type('integer'), new Assert\GreaterThan(0)]
+                constraints: [new Assert\Type('integer'), new Assert\GreaterThan(0)],
             )->addPropertyConstraints(
                 property: 'itemPerPage',
-                constraints: [new Assert\Type('integer'), new Assert\GreaterThan(0)]
+                constraints: [new Assert\Type('integer'), new Assert\GreaterThan(0)],
             );
     }
 }

@@ -18,7 +18,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = 'deleted';
 
@@ -28,7 +28,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $this->assertEquals($id, $article->id());
@@ -44,7 +44,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = 'bad status';
 
@@ -56,7 +56,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
     }
 
@@ -66,7 +66,7 @@ class ArticleTest extends KernelTestCase
         $title = 'Le livre de Boba Fetttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
         ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = 'draft';
 
@@ -78,7 +78,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
     }
 
@@ -86,14 +86,14 @@ class ArticleTest extends KernelTestCase
     {
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
 
         $article = Article::createDraftArticle(
             title: $title,
             content: $content,
             user: $user,
-            releaseDate: $releaseDate
+            releaseDate: $releaseDate,
         );
 
         $this->assertEquals(Status::DRAFT, $article->status());
@@ -103,7 +103,7 @@ class ArticleTest extends KernelTestCase
     {
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('-1 day');
 
         $this->expectException(InvalidArgumentException::class);
@@ -112,7 +112,7 @@ class ArticleTest extends KernelTestCase
             title: $title,
             content: $content,
             user: $user,
-            releaseDate: $releaseDate
+            releaseDate: $releaseDate,
         );
     }
 
@@ -120,7 +120,7 @@ class ArticleTest extends KernelTestCase
     {
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
 
         $article = Article::createPublishedArticle(
             title: $title,
@@ -136,7 +136,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DRAFT;
 
@@ -146,7 +146,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $newTitle = 'Le livre de Boba Fett by Boba Fett';
@@ -163,7 +163,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::PUBLISHED;
 
@@ -173,7 +173,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $newTitle = 'Le livre de Boba Fett by Boba Fett';
@@ -189,7 +189,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DELETED;
 
@@ -199,7 +199,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $newTitle = 'Le livre de Boba Fett by Boba Fett';
@@ -215,7 +215,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::PUBLISHED;
 
@@ -225,7 +225,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $article->convertToDraft(null);
@@ -238,7 +238,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DELETED;
 
@@ -248,7 +248,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $this->expectException(InvalidArticleEdition::class);
@@ -261,7 +261,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::PUBLISHED;
 
@@ -271,7 +271,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $newReleaseDate = new \DateTimeImmutable('-1 day');
@@ -286,7 +286,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DRAFT;
 
@@ -296,7 +296,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $article->publish();
@@ -309,7 +309,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DELETED;
 
@@ -319,7 +319,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $this->expectException(InvalidArticleEdition::class);
@@ -332,7 +332,7 @@ class ArticleTest extends KernelTestCase
         $id = 1;
         $title = 'Le livre de Boba Fett';
         $content = 'Ce livre est à prendre au second degré, il n\'existe pas encore de chasseur de prime parcourant l\'univers.';
-        $user = User::create(1,'Han', 'Solo');
+        $user = User::create(1, 'Han', 'Solo');
         $releaseDate = new \DateTimeImmutable('+1 day');
         $status = Status::DELETED;
 
@@ -342,7 +342,7 @@ class ArticleTest extends KernelTestCase
             content: $content,
             user: $user,
             releaseDate: $releaseDate,
-            status: $status
+            status: $status,
         );
 
         $article->delete();

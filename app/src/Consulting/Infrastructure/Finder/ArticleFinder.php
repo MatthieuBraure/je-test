@@ -14,7 +14,8 @@ class ArticleFinder implements ArticleFinderInterface
 {
     public function __construct(
         private readonly Connection $connection,
-    ){}
+    ) {
+    }
 
     public function findAll(): array
     {
@@ -35,9 +36,8 @@ class ArticleFinder implements ArticleFinderInterface
 
         $results = [];
         foreach ($data as $rawArticle) {
-
             $releaseDate = $rawArticle['releaseDate'];
-            if (is_string($releaseDate)) {
+            if (\is_string($releaseDate)) {
                 $releaseDate = new \DateTimeImmutable($releaseDate);
             }
 

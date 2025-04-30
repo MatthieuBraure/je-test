@@ -6,7 +6,6 @@ namespace App\Editorial\Presentation\Http\Api;
 
 use App\Core\Domain\Command\CommandBus;
 use App\Editorial\Application\Command\EditArticle\EditArticle;
-use App\Editorial\Application\Command\EditArticle\EditArticleHandler;
 use App\Editorial\Domain\Exception\ArticleNotFound;
 use App\Editorial\Infrastructure\Repository\ArticleRepository;
 use App\Editorial\Presentation\Input\EditArticleInput;
@@ -22,9 +21,10 @@ class EditArticleController extends AbstractController
         private readonly CommandBus $commandBus,
         private readonly ValidatorInterface $validator,
         private readonly ArticleRepository $articleRepository,
-    ){}
+    ) {
+    }
 
-    #[Route("/api/v1/editorial/article/{articleId}", name: "editorial.article.edit", methods: ["PUT"])]
+    #[Route('/api/v1/editorial/article/{articleId}', name: 'editorial.article.edit', methods: ['PUT'])]
     public function __invoke(int $articleId, Request $request): Response
     {
         try {
@@ -35,7 +35,7 @@ class EditArticleController extends AbstractController
 
             $input = $this->generateInput($request);
             $errors = $this->validator->validate($input);
-            if (count($errors) > 0) {
+            if (0 < \count($errors)) {
                 $errorsString = (string) $errors;
 
                 return new Response(content: $errorsString, status: Response::HTTP_BAD_REQUEST);
@@ -50,7 +50,7 @@ class EditArticleController extends AbstractController
         } catch (ArticleNotFound $articleNotFound) {
             return new Response(
                 content: $articleNotFound->getMessage(),
-                status: $articleNotFound->getCode()
+                status: $articleNotFound->getCode(),
             );
         }
 

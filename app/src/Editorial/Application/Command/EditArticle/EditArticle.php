@@ -9,10 +9,11 @@ use App\Core\Application\Command\Command;
 final class EditArticle implements Command
 {
     public function __construct(
-        private readonly int                 $articleId,
-        private readonly string              $title,
-        private readonly string              $content,
-    ) {}
+        private readonly int $articleId,
+        private readonly string $title,
+        private readonly string $content,
+    ) {
+    }
 
     public function articleId(): int
     {

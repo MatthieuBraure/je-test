@@ -12,10 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ListArticlesController extends AbstractController
 {
     public function __construct(
-       private readonly ArticleFinder $articleFinder
-    ) {}
+        private readonly ArticleFinder $articleFinder,
+    ) {
+    }
 
-    #[Route("/", name: "consulting.list.articles")]
+    #[Route('/', name: 'consulting.list.articles')]
     public function __invoke(): Response
     {
         $articles = $this->articleFinder->findAll();

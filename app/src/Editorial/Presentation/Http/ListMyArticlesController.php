@@ -16,10 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ListMyArticlesController extends AbstractController
 {
     public function __construct(
-      private readonly ArticleFinder $articleFinder,
-    ) {}
+        private readonly ArticleFinder $articleFinder,
+    ) {
+    }
 
-    #[Route("/editorial/article/", name: "editorial.get.my.articles")]
+    #[Route('/editorial/article/', name: 'editorial.get.my.articles')]
     public function __invoke(Request $request): Response
     {
         $page = 1;
