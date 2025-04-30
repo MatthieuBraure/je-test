@@ -1,5 +1,15 @@
+includes:
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/rules.neon
+    - phpstan-baseline.neon
 parameters:
     level: 6
     paths:
         - src
         - tests
+    symfony:
+        containerXmlPath: var/cache/dev/App_KernelDevDebugContainer.xml
+    scanDirectories:
+        - var/cache/dev/Symfony/Config
+    scanFiles:
+        - vendor/symfony/dependency-injection/Loader/Configurator/ContainerConfigurator.php

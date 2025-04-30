@@ -1,0 +1,187 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Class App\\Administration\\Domain\\Security\\AuthorVoter extends generic class Symfony\\Component\\Security\\Core\\Authorization\\Voter\\Voter but does not specify its types\: TAttribute, TSubject$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Administration/Domain/Security/AuthorVoter.php
+
+		-
+			message: '#^Instanceof between App\\Core\\Domain\\Model\\User and App\\Core\\Domain\\Model\\User will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: src/Administration/Domain/Security/AuthorVoter.php
+
+		-
+			message: '#^Class App\\Administration\\Presentation\\Form\\RegistrationFormType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Administration/Presentation/Form/RegistrationFormType.php
+
+		-
+			message: '#^Method App\\Consulting\\Domain\\Finder\\ArticleFinder\:\:findAll\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Consulting/Domain/Finder/ArticleFinder.php
+
+		-
+			message: '#^Method App\\Consulting\\Domain\\Model\\Article\:\:id\(\) never returns null so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: src/Consulting/Domain/Model/Article.php
+
+		-
+			message: '#^Method App\\Consulting\\Infrastructure\\Finder\\ArticleFinder\:\:findAll\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Consulting/Infrastructure/Finder/ArticleFinder.php
+
+		-
+			message: '#^Method App\\Editorial\\Application\\Query\\GetArticles\\RetrieveArticles\:\:__construct\(\) has parameter \$status with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Application/Query/GetArticles/RetrieveArticles.php
+
+		-
+			message: '#^Method App\\Editorial\\Application\\Query\\GetArticles\\RetrieveArticles\:\:status\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Application/Query/GetArticles/RetrieveArticles.php
+
+		-
+			message: '#^Method App\\Editorial\\Domain\\ValueObject\\PaginatedArticleResults\:\:__construct\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Domain/ValueObject/PaginatedArticleResults.php
+
+		-
+			message: '#^Method App\\Editorial\\Domain\\ValueObject\\PaginatedArticleResults\:\:items\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Domain/ValueObject/PaginatedArticleResults.php
+
+		-
+			message: '#^Method App\\Editorial\\Infrastructure\\Repository\\ArticleRepository\:\:createArticleModel\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Infrastructure/Repository/ArticleRepository.php
+
+		-
+			message: '#^Class App\\Editorial\\Presentation\\Form\\EditArticleFormType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Editorial/Presentation/Form/EditArticleFormType.php
+
+		-
+			message: '#^Class App\\Editorial\\Presentation\\Form\\WriteArticleFormType extends generic class Symfony\\Component\\Form\\AbstractType but does not specify its types\: TData$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/Editorial/Presentation/Form/WriteArticleFormType.php
+
+		-
+			message: '#^Cannot cast Symfony\\Component\\Validator\\ConstraintViolationListInterface to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Editorial/Presentation/Http/Api/ConvertToDraftController.php
+
+		-
+			message: '#^Cannot cast Symfony\\Component\\Validator\\ConstraintViolationListInterface to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Editorial/Presentation/Http/Api/EditArticleController.php
+
+		-
+			message: '#^Cannot cast Symfony\\Component\\Validator\\ConstraintViolationListInterface to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Editorial/Presentation/Http/Api/RetrieveArticlesController.php
+
+		-
+			message: '#^Cannot cast Symfony\\Component\\Validator\\ConstraintViolationListInterface to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/Editorial/Presentation/Http/Api/WriteArticleController.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\Input\\ConvertToDraftInput\:\:__construct\(\) has parameter \$releaseDate with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Editorial/Presentation/Input/ConvertToDraftInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\EditArticleInput\:\:\$content has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/EditArticleInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\EditArticleInput\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/EditArticleInput.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\Input\\RetrieveArticlesInput\:\:__construct\(\) has parameter \$itemPerPage with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Editorial/Presentation/Input/RetrieveArticlesInput.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\Input\\RetrieveArticlesInput\:\:__construct\(\) has parameter \$page with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Editorial/Presentation/Input/RetrieveArticlesInput.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\Input\\RetrieveArticlesInput\:\:__construct\(\) has parameter \$status with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: src/Editorial/Presentation/Input/RetrieveArticlesInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\WriteArticleInput\:\:\$content has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/WriteArticleInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\WriteArticleInput\:\:\$releaseDate has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/WriteArticleInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\WriteArticleInput\:\:\$status has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/WriteArticleInput.php
+
+		-
+			message: '#^Property App\\Editorial\\Presentation\\Input\\WriteArticleInput\:\:\$title has no type specified\.$#'
+			identifier: missingType.property
+			count: 1
+			path: src/Editorial/Presentation/Input/WriteArticleInput.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\ViewModel\\Article\:\:jsonSerialize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Presentation/ViewModel/Article.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\ViewModel\\Article\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Presentation/ViewModel/Article.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\ViewModel\\ArticleCollection\:\:jsonSerialize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Presentation/ViewModel/ArticleCollection.php
+
+		-
+			message: '#^Method App\\Editorial\\Presentation\\ViewModel\\ArticleCollection\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Editorial/Presentation/ViewModel/ArticleCollection.php

@@ -24,8 +24,8 @@ down: ## Stop the docker hub
 logs: ## Show live logs
 	@$(DOCKER_COMP) logs --tail=0 --follow
 
-sh: ## Connect to the php container
-	@$(PHP_CONT) sh
+enter: ## Connect to the php container
+	@$(PHP_CONT) bash
 
 bash: ## Connect to the php container via bash so up and down arrows go to previous commands
 	@$(PHP_CONT) bash
@@ -62,3 +62,7 @@ install:
 php-cs-fixer: ## Run php-cs-fixer
 php-cs-fixer:
 	@$(QA_CONT) php-cs-fixer fix
+
+phpstan: ## Run phpstan
+phpstan:
+	@$(QA_CONT) phpstan analyse

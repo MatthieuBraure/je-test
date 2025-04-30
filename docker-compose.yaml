@@ -50,7 +50,7 @@ services:
         stdin_open: true
         tty: true
         volumes:
-            - .:/project:cached
+            - ./app/:/project
             - qa-tmp:/tmp
 networks:
     rr-net:
