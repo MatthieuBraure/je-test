@@ -1,0 +1,32 @@
+on: [pull_request]
+
+jobs:
+  static-code-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install dependencies
+        working-directory: app
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Warm up Symfony cache
+        working-directory: app
+        run: |
+          php bin/console cache:warmup
+
+      - name: Run PHPStan
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/app:/project \
+            -w /project \
+            jakzal/phpqa:php8.2-alpine \
+            phpstan analyse -c phpstan.neon
+
+      - name: Run PHP-CS-Fixer
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/app:/project \
+            -w /project \
+            jakzal/phpqa:php8.2-alpine \
+            php-cs-fixer fix --dry-run --allow-risky=yes --no-interaction --ansi
