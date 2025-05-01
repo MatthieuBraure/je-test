@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Editorial\Presentation\Http\Api;
+namespace App\Social\Presentation\Http\Api;
 
 use App\Core\Domain\Command\CommandBus;
 use App\Core\Domain\Exception\ArticleNotFound;
-use App\Editorial\Application\Command\PublishArticle\PublishArticle;
-use App\Editorial\Infrastructure\Repository\ArticleRepository;
+use App\Core\Domain\Model\User;
+use App\Social\Application\Command\LikeArticle\LikeArticle;
+use App\Social\Domain\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PublishArticleController extends AbstractController
+class LikeArticleController extends AbstractController
 {
     public function __construct(
         private readonly CommandBus $commandBus,
@@ -20,26 +21,24 @@ class PublishArticleController extends AbstractController
     ) {
     }
 
-    #[Route('/api/v1/editorial/article/{articleId}/publish', name: 'editorial.article.publish', methods: ['POST'])]
+    #[Route('/api/v1/social/article/{articleId}/like', name: 'social.article.like', methods: ['POST'])]
     public function __invoke(int $articleId): Response
     {
         try {
-            $article = $this->articleRepository->get($articleId);
-            if (!$this->isGranted('author', $article->id())) {
-                return new Response(content: 'Access Denied', status: Response::HTTP_FORBIDDEN);
-            }
+            $article = $this->articleRepository->getPublished($articleId);
 
-            $command = new PublishArticle($articleId);
+            /** @var User $user */
+            $user = $this->getUser();
+
+            $command = new LikeArticle($articleId, $user->getId());
             $this->commandBus->handle($command);
 
-            $this->addFlash('success', 'Your article has been published.');
+            return new Response(content: 'Your like has been added.', status: Response::HTTP_OK);
         } catch (ArticleNotFound $articleNotFound) {
             return new Response(
                 content: $articleNotFound->getMessage(),
                 status: $articleNotFound->getCode(),
             );
         }
-
-        return new Response(content: '', status: Response::HTTP_OK);
     }
 }

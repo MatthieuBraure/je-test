@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Editorial\Presentation\Http\Api;
 
 use App\Core\Domain\Command\CommandBus;
+use App\Core\Domain\Exception\ArticleNotFound;
 use App\Editorial\Application\Command\ConvertToDraft\ConvertToDraft;
-use App\Editorial\Domain\Exception\ArticleNotFound;
 use App\Editorial\Infrastructure\Repository\ArticleRepository;
 use App\Editorial\Presentation\Input\ConvertToDraftInput;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

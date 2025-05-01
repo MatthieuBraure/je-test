@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Editorial\Presentation\Http\Api;
 
-use App\Editorial\Domain\Exception\ArticleNotFound;
+use App\Core\Domain\Exception\ArticleNotFound;
 use App\Editorial\Domain\Model\Status;
 use App\Editorial\Domain\Repository\ArticleRepository;
 use App\Editorial\Presentation\ViewModel\Article;
