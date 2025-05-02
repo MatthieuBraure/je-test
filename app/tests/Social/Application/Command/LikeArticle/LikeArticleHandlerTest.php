@@ -13,13 +13,19 @@ use App\Social\Domain\Model\User;
 use App\Social\Domain\Repository\ArticleRepository;
 use App\Social\Domain\Repository\LikeRepository;
 use App\Social\Domain\Repository\UserRepository;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+
 class LikeArticleHandlerTest extends TestCase
 {
+    /** @var ArticleRepository&MockObject */
     private ArticleRepository $articleRepository;
+    /** @var UserRepository&MockObject */
     private UserRepository $userRepository;
+    /** @var LikeRepository&MockObject */
     private LikeRepository $likeRepository;
     private LikeArticleHandler $handler;
+
     protected function setUp(): void
     {
         $this->articleRepository = $this->createMock(ArticleRepository::class);
@@ -29,7 +35,7 @@ class LikeArticleHandlerTest extends TestCase
         $this->handler = new LikeArticleHandler(
             $this->articleRepository,
             $this->userRepository,
-            $this->likeRepository
+            $this->likeRepository,
         );
     }
 

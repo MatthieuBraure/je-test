@@ -11,6 +11,9 @@ final class Article
         private readonly string $title,
         private readonly string $content,
         private readonly User $user,
+        private readonly int $likeCount,
+        private readonly bool $hasLiked,
+        private readonly bool $canLike,
         private readonly ?\DateTimeImmutable $releaseDate,
     ) {
     }
@@ -38,5 +41,20 @@ final class Article
     public function releaseDate(): ?\DateTimeImmutable
     {
         return $this->releaseDate;
+    }
+
+    public function likeCount(): int
+    {
+        return $this->likeCount;
+    }
+
+    public function hasLiked(): bool
+    {
+        return $this->hasLiked;
+    }
+
+    public function canLike(): bool
+    {
+        return $this->canLike;
     }
 }

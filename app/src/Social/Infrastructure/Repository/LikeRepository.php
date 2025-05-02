@@ -50,4 +50,15 @@ class LikeRepository implements LikeRepositoryInterface
             ],
         );
     }
+
+    public function delete(Like $like): void
+    {
+        $this->connection->delete(
+            '`like`',
+            [
+                'articleId' => $like->article()->id(),
+                'userId' => $like->user()->id(),
+            ],
+        );
+    }
 }

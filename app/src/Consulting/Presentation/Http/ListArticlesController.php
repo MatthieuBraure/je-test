@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Consulting\Presentation\Http;
 
 use App\Consulting\Domain\Finder\ArticleFinder;
+use App\Core\Domain\Model\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,10 @@ class ListArticlesController extends AbstractController
     #[Route('/', name: 'consulting.list.articles')]
     public function __invoke(): Response
     {
-        $articles = $this->articleFinder->findAll();
+        /** @var User $user */
+        $user = $this->getUser();
+        $userId = $user->getId();
+        $articles = $this->articleFinder->findAll($userId);
 
         return $this->render('consulting/list-articles.html.twig', ['articles' => $articles]);
     }
