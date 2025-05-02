@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Social\Application\Command\LikeArticle;
 
 use App\Core\Application\Command\CommandHandler;
+use App\Core\Domain\Event\EventDispatcher;
+use App\Social\Domain\Event\ArticleLiked;
 use App\Social\Domain\Exception\InvalidLikeCreation;
 use App\Social\Domain\Model\Like;
 use App\Social\Domain\Repository\ArticleRepository;
@@ -17,6 +19,7 @@ class LikeArticleHandler implements CommandHandler
         private readonly ArticleRepository $articleRepository,
         private readonly UserRepository $userRepository,
         private readonly LikeRepository $likeRepository,
+        private readonly EventDispatcher $eventDispatcher,
     ) {
     }
 
@@ -35,5 +38,10 @@ class LikeArticleHandler implements CommandHandler
 
         $like = Like::create($article, $user);
         $this->likeRepository->save($like);
+
+        $this->eventDispatcher->dispatch(new ArticleLiked(
+            userId: $user->id(),
+            articleId: $article->id(),
+        ));
     }
 }

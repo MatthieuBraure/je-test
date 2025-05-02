@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Social\Application\Command\LikeArticle;
 
+use App\Core\Domain\Event\EventDispatcher;
 use App\Social\Application\Command\LikeArticle\LikeArticle;
 use App\Social\Application\Command\LikeArticle\LikeArticleHandler;
 use App\Social\Domain\Exception\InvalidLikeCreation;
@@ -24,6 +25,8 @@ class LikeArticleHandlerTest extends TestCase
     private UserRepository $userRepository;
     /** @var LikeRepository&MockObject */
     private LikeRepository $likeRepository;
+    /** @var EventDispatcher&MockObject */
+    private EventDispatcher $eventDispatcher;
     private LikeArticleHandler $handler;
 
     protected function setUp(): void
@@ -31,11 +34,13 @@ class LikeArticleHandlerTest extends TestCase
         $this->articleRepository = $this->createMock(ArticleRepository::class);
         $this->userRepository = $this->createMock(UserRepository::class);
         $this->likeRepository = $this->createMock(LikeRepository::class);
+        $this->eventDispatcher = $this->createMock(EventDispatcher::class);
 
         $this->handler = new LikeArticleHandler(
             $this->articleRepository,
             $this->userRepository,
             $this->likeRepository,
+            $this->eventDispatcher,
         );
     }
 
