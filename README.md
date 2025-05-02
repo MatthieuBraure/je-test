@@ -110,3 +110,17 @@ Also add the `Content-Type: application/json` header to post your payloads in js
   --header 'Content-Type: application/json' \
   --header 'X-AUTH-TOKEN: {apiKey}' \
   ```
+- Like an Article:
+  ```shell
+  curl --request GET \
+  --url http://127.0.0.1:9000/api/v1/social/article/1/like \
+  --header 'Content-Type: application/json' \
+  --header 'X-AUTH-TOKEN: {apiKey}' \
+  ```
+- Unlike an Article:
+  ```shell
+  curl --request GET \
+  --url http://127.0.0.1:9000/api/v1/social/article/1/unlike \
+  --header 'Content-Type: application/json' \
+  --header 'X-AUTH-TOKEN: {apiKey}' \
+  ```
