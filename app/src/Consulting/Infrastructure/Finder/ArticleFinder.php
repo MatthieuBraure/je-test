@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Consulting\Infrastructure\Finder;
 
-use App\Consulting\Application\ArticleLikePermission;
+use App\Consulting\Application\Port\ArticleLikePermission;
+use App\Consulting\Application\Port\ArticleLikeStatusProvider;
 use App\Consulting\Domain\Finder\ArticleFinder as ArticleFinderInterface;
 use App\Consulting\Domain\Model\Article;
 use App\Consulting\Domain\Model\User;
 use App\Core\Application\Port\ArticleLikeCounter;
 use App\Editorial\Domain\Model\Status;
-use App\Social\Application\Query\ArticleLikeStatus;
 use Doctrine\DBAL\Connection;
 
 class ArticleFinder implements ArticleFinderInterface
@@ -18,7 +18,7 @@ class ArticleFinder implements ArticleFinderInterface
     public function __construct(
         private readonly Connection $connection,
         private readonly ArticleLikeCounter $articleLikeCounter,
-        private readonly ArticleLikeStatus $articleLikeStatus,
+        private readonly ArticleLikeStatusProvider $articleLikeStatus,
         private readonly ArticleLikePermission $articleLikePermission,
     ) {
     }

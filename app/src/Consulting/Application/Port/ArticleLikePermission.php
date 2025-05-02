@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Consulting\Application;
+namespace App\Consulting\Application\Port;
 
 interface ArticleLikePermission
 {

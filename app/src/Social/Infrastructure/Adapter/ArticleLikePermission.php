@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Social\Infrastructure\Adapter;
 
-use App\Consulting\Application\ArticleLikePermission as ArticleLikePermissionInterface;
+use App\Consulting\Application\Port\ArticleLikePermission as ArticleLikePermissionInterface;
 use App\Social\Infrastructure\Checker\ArticleLikePermission as ArticleLikePermissionChecker;
 
 class ArticleLikePermission implements ArticleLikePermissionInterface
