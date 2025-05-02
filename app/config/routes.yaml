@@ -15,3 +15,9 @@ editorial:
     type: annotation
     options:
         expose: true
+
+social:
+    resource: ../src/Social/Presentation/Http/
+    type: annotation
+    options:
+        expose: true

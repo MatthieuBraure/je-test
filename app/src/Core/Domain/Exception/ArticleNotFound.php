@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Editorial\Domain\Exception;
+namespace App\Core\Domain\Exception;
 
 final class ArticleNotFound extends \InvalidArgumentException
 {

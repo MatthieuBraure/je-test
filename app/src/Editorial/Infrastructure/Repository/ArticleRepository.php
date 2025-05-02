@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Editorial\Infrastructure\Repository;
 
-use App\Editorial\Domain\Exception\ArticleNotFound;
+use App\Core\Domain\Exception\ArticleNotFound;
 use App\Editorial\Domain\Model\Article;
 use App\Editorial\Domain\Model\Status;
 use App\Editorial\Domain\Repository\ArticleRepository as ArticleRepositoryInterface;
