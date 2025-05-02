@@ -124,3 +124,11 @@ Also add the `Content-Type: application/json` header to post your payloads in js
   --header 'Content-Type: application/json' \
   --header 'X-AUTH-TOKEN: {apiKey}' \
   ```
+  
+- Get most liked articles (10 hard coded):
+  ```shell
+  curl --request GET \
+  --url http://127.0.0.1:9000/api/v1/social/article/most-liked \
+  --header 'Content-Type: application/json' \
+  --header 'X-AUTH-TOKEN: {apiKey}' \
+  ```

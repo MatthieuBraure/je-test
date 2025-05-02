@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Social\Infrastructure\Repository;
 
+use App\Social\Application\Query\MostLikedArticleView;
 use App\Social\Domain\Model\Article;
 use App\Social\Domain\Model\Like;
 use App\Social\Domain\Model\User;
 use App\Social\Domain\Repository\LikeRepository as LikeRepositoryInterface;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ParameterType;
 
 class LikeRepository implements LikeRepositoryInterface
 {
@@ -37,6 +39,39 @@ class LikeRepository implements LikeRepositoryInterface
             id: (int) $data['id'],
             createdAt: new \DateTimeImmutable($data['createdAt']),
         );
+    }
+
+    /**
+     * @return array<int, MostLikedArticleView>
+     */
+    public function getMostLikedArticles(int $page, int $itemPerPage): array
+    {
+        $sql = <<< 'SQL'
+            SELECT articleId, count(id) as nbLikes
+                FROM `like`
+                GROUP BY articleId
+                ORDER BY nbLikes DESC, articleId DESC
+                LIMIT :itemPerPage
+                OFFSET :firstResultOffset
+        SQL;
+
+        $data = $this->connection->executeQuery($sql, [
+            'itemPerPage' => $itemPerPage,
+            'firstResultOffset' => ($page - 1) * $itemPerPage,
+        ], [
+            'itemPerPage' => ParameterType::INTEGER,
+            'firstResultOffset' => ParameterType::INTEGER,
+        ])->fetchAllAssociative();
+
+        $results = [];
+        foreach ($data as $raw) {
+            $results[] = new MostLikedArticleView(
+                (int) $raw['articleId'],
+                (int) $raw['nbLikes'],
+            );
+        }
+
+        return $results;
     }
 
     public function resetLikesFor(Article $article): void
