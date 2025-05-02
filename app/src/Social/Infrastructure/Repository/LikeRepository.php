@@ -39,6 +39,16 @@ class LikeRepository implements LikeRepositoryInterface
         );
     }
 
+    public function resetLikesFor(Article $article): void
+    {
+        $this->connection->delete(
+            '`like`',
+            [
+                'articleId' => $article->id(),
+            ],
+        );
+    }
+
     public function save(Like $like): void
     {
         $this->connection->insert(

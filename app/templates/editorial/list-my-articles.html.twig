@@ -15,6 +15,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Status</th>
+                <th scope="col">Like</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td class="align-middle">{{ article.title }}</td>
                     <td class="align-middle">{{ article.content }}</td>
                     <td class="align-middle">{{ article.status }}</td>
+                    <td class="align-middle">{{ article.likes }}</td>
                     <td class="align-middle">
                         <button type="button" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="top" title="Delete" onclick="deleteArticle({{ article.id }})">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

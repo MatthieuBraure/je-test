@@ -12,6 +12,8 @@ interface LikeRepository
 {
     public function get(Article $article, User $user): ?Like;
 
+    public function resetLikesFor(Article $article): void;
+
     public function save(Like $like): void;
 
     public function delete(Like $like): void;
