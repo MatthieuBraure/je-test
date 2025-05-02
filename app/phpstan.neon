@@ -1,6 +1,8 @@
 includes:
     - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/extension.neon
     - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-symfony/rules.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-phpunit/extension.neon
+    - /tools/.composer/vendor-bin/phpstan/vendor/phpstan/phpstan-phpunit/rules.neon
     - phpstan-baseline.neon
 parameters:
     level: 6

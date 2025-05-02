@@ -7,14 +7,14 @@ namespace App\Social\Presentation\Http\Api;
 use App\Core\Domain\Command\CommandBus;
 use App\Core\Domain\Exception\ArticleNotFound;
 use App\Core\Domain\Model\User;
-use App\Social\Application\Command\LikeArticle\LikeArticle;
+use App\Social\Application\Command\UnLikeArticle\UnLikeArticle;
 use App\Social\Application\Query\ArticleLikeCounter as LikeArticleQuery;
 use App\Social\Domain\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class LikeArticleController extends AbstractController
+class UnLikeArticleController extends AbstractController
 {
     public function __construct(
         private readonly CommandBus $commandBus,
@@ -22,7 +22,7 @@ class LikeArticleController extends AbstractController
     ) {
     }
 
-    #[Route('/api/v1/social/article/{articleId}/like', name: 'social.article.like', methods: ['POST'])]
+    #[Route('/api/v1/social/article/{articleId}/unlike', name: 'social.article.unlike', methods: ['POST'])]
     public function __invoke(int $articleId, LikeArticleQuery $query): Response
     {
         try {
@@ -31,7 +31,7 @@ class LikeArticleController extends AbstractController
             /** @var User $user */
             $user = $this->getUser();
 
-            $command = new LikeArticle($articleId, $user->getId());
+            $command = new UnLikeArticle($articleId, $user->getId());
             $this->commandBus->handle($command);
 
             $likeCount = $query->countByArticle($articleId);

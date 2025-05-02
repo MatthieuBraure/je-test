@@ -8,10 +8,11 @@ use App\Social\Domain\Model\Article;
 use App\Social\Domain\Model\Like;
 use App\Social\Domain\Model\User;
 
-interface
-LikeRepository
+interface LikeRepository
 {
     public function get(Article $article, User $user): ?Like;
 
     public function save(Like $like): void;
+
+    public function delete(Like $like): void;
 }
