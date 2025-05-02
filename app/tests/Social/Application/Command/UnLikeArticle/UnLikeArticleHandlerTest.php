@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Social\Application\Command\UnLikeArticle;
 
+use App\Core\Domain\Event\EventDispatcher;
 use App\Social\Application\Command\UnLikeArticle\UnLikeArticle;
 use App\Social\Application\Command\UnLikeArticle\UnLikeArticleHandler;
 use App\Social\Domain\Model\Article;
@@ -23,6 +24,8 @@ class UnLikeArticleHandlerTest extends TestCase
     private UserRepository $userRepository;
     /** @var LikeRepository&MockObject */
     private LikeRepository $likeRepository;
+    /** @var EventDispatcher&MockObject */
+    private EventDispatcher $eventDispatcher;
     private UnLikeArticleHandler $handler;
 
     protected function setUp(): void
@@ -30,11 +33,13 @@ class UnLikeArticleHandlerTest extends TestCase
         $this->articleRepository = $this->createMock(ArticleRepository::class);
         $this->userRepository = $this->createMock(UserRepository::class);
         $this->likeRepository = $this->createMock(LikeRepository::class);
+        $this->eventDispatcher = $this->createMock(EventDispatcher::class);
 
         $this->handler = new UnLikeArticleHandler(
             $this->articleRepository,
             $this->userRepository,
             $this->likeRepository,
+            $this->eventDispatcher,
         );
     }
 
