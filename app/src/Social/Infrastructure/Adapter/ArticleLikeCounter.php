@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Social\Infrastructure\Adapter;
 
-use App\Consulting\Application\ArticleLikeCounter as ConsultingArticleLikeCounter;
+use App\Core\Application\Port\ArticleLikeCounter as ConsultingArticleLikeCounter;
 use App\Social\Application\Query\ArticleLikeCounter as ArticleLikeCounterQuery;
 
 readonly class ArticleLikeCounter implements ConsultingArticleLikeCounter

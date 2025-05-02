@@ -23,3 +23,4 @@ services:
     App\Editorial\Presentation\Http\:
         resource: '../src/Editorial/Presentation/Http/'
         tags: ['controller.service_arguments']
+

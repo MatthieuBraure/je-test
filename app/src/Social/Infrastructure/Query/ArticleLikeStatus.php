@@ -25,7 +25,6 @@ class ArticleLikeStatus implements ArticleLikeStatusInterface
             $sql,
             ['articleId' => $articleId, 'userId' => $userId],
         )->fetchOne();
-        dump($data);
 
         return (bool) $data;
     }

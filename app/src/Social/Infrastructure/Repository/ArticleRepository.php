@@ -20,10 +20,30 @@ class ArticleRepository implements ArticleRepositoryInterface
     ) {
     }
 
+    public function get(int $articleId): Article
+    {
+        $sql = <<< 'SQL'
+            SELECT id, userId, status
+            FROM article 
+            WHERE id = :articleId
+        SQL;
+
+        $data = $this->connection->executeQuery($sql, ['articleId' => $articleId])->fetchAssociative();
+        if (!$data) {
+            throw ArticleNotFound::create($articleId);
+        }
+
+        return Article::create(
+            id: (int) $data['id'],
+            user: $this->userRepository->get((int) $data['userId']),
+            isPublished: self::STATUS_PUBLISHED === $data['status'],
+        );
+    }
+
     public function getPublished(int $articleId): Article
     {
         $sql = <<< 'SQL'
-            SELECT * 
+            SELECT id, userId, status
             FROM article 
             WHERE id = :articleId
             AND status = :publishedStatus

@@ -8,5 +8,7 @@ use App\Social\Domain\Model\Article;
 
 interface ArticleRepository
 {
+    public function get(int $articleId): Article;
+
     public function getPublished(int $articleId): Article;
 }

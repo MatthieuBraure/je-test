@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Consulting\Application;
+namespace App\Core\Application\Port;
 
 interface ArticleLikeCounter
 {

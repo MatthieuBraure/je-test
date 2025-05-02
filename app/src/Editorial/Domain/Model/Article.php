@@ -18,6 +18,7 @@ final class Article
         private readonly User $user,
         private ?\DateTimeImmutable $releaseDate,
         private string $status,
+        private int $likes = 0,
     ) {
         $this->validate();
     }
@@ -29,6 +30,7 @@ final class Article
         User $user,
         ?\DateTimeImmutable $releaseDate,
         string $status,
+        int $likes = 0,
     ): self {
         return new self(
             id: $id,
@@ -37,6 +39,7 @@ final class Article
             user: $user,
             releaseDate: $releaseDate,
             status: $status,
+            likes: $likes,
         );
     }
 
@@ -153,6 +156,11 @@ final class Article
     public function status(): string
     {
         return $this->status;
+    }
+
+    public function likes(): int
+    {
+        return $this->likes;
     }
 
     private function validate(): void
