@@ -1,0 +1,44 @@
+deptrac:
+  paths:
+    - ./src
+
+  layers:
+    - name: Core
+      collectors:
+        - type: directory
+          value: src/Core/.*
+    - name: Consulting
+      collectors:
+        - type: directory
+          value: src/Consulting/.*
+    - name: Editorial
+      collectors:
+        - type: directory
+          value: src/Editorial/.*
+    - name: Social
+      collectors:
+        - type: directory
+          value: src/Social/.*
+    - name: Administration
+      collectors:
+        - type: directory
+          value: src/Administration/.*
+    - name: Log
+      collectors:
+        - type: directory
+          value: src/Log/.*
+
+  ruleset:
+    Consulting:
+      - Core
+    Editorial:
+      - Core
+    Social:
+      - Core
+    Administration:
+      - Core
+    Log:
+      - Core
+      - Social
+
+    Core: []
