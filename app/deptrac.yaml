@@ -7,38 +7,36 @@ deptrac:
       collectors:
         - type: directory
           value: src/Core/.*
-    - name: Consulting
+    - name: Application
       collectors:
         - type: directory
-          value: src/Consulting/.*
-    - name: Editorial
+          value: 'src/(?!Core).*/Application'
+    - name: Domain
       collectors:
         - type: directory
-          value: src/Editorial/.*
-    - name: Social
+          value: 'src/(?!Core).*/Domain'
+    - name: Infrastructure
       collectors:
         - type: directory
-          value: src/Social/.*
-    - name: Administration
+          value: 'src/(?!Core).*/Infrastructure'
+    - name: Presentation
       collectors:
         - type: directory
-          value: src/Administration/.*
-    - name: Log
-      collectors:
-        - type: directory
-          value: src/Log/.*
+          value: 'src/(?!Core).*/Presentation'
 
   ruleset:
-    Consulting:
+    Application:
       - Core
-    Editorial:
+      - Domain
+    Infrastructure:
       - Core
-    Social:
+      - Domain
+      - Application
+    Presentation:
+      - Application
       - Core
-    Administration:
+      - Domain
+      - Infrastructure
+    Domain:
       - Core
-    Log:
-      - Core
-      - Social
-
     Core: []
