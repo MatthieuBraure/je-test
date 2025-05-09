@@ -6,5 +6,5 @@ namespace App\Consulting\Domain\Finder;
 
 interface ArticleFinder
 {
-    public function findAll(int $userId): array;
+    public function findAll(): array;
 }

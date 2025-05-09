@@ -2,16 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Consulting\Domain\Model;
+namespace App\Editorial\Presentation\ViewModel;
 
-final class Article
+use App\Editorial\Domain\Model\User;
+
+class ArticleWithLikeView
 {
     public function __construct(
-        private readonly int $id,
-        private readonly string $title,
-        private readonly string $content,
+        private readonly ?int $id,
+        private string $title,
+        private string $content,
         private readonly User $user,
-        private readonly ?\DateTimeImmutable $releaseDate,
+        private ?\DateTimeImmutable $releaseDate,
+        private string $status,
+        private int $likeCount,
     ) {
     }
 
@@ -38,5 +42,15 @@ final class Article
     public function releaseDate(): ?\DateTimeImmutable
     {
         return $this->releaseDate;
+    }
+
+    public function status(): string
+    {
+        return $this->status;
+    }
+
+    public function likeCount(): int
+    {
+        return $this->likeCount;
     }
 }
