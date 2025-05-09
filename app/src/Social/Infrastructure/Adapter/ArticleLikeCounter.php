@@ -18,4 +18,9 @@ readonly class ArticleLikeCounter implements ConsultingArticleLikeCounter
     {
         return $this->likeArticle->countByIds($articleIds);
     }
+
+    public function countByArticle(int $articleId): int
+    {
+        return $this->likeArticle->countByArticle($articleId);
+    }
 }

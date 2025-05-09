@@ -8,6 +8,8 @@ use App\Core\Domain\Model\User;
 use App\Editorial\Application\Paginator\Paginator;
 use App\Editorial\Application\Query\GetArticles\RetrieveArticles;
 use App\Editorial\Domain\Finder\ArticleFinder;
+use App\Editorial\Domain\Model\Article;
+use App\Editorial\Presentation\Factory\ArticleWithSocialViewFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +19,7 @@ class ListMyArticlesController extends AbstractController
 {
     public function __construct(
         private readonly ArticleFinder $articleFinder,
+        private readonly ArticleWithSocialViewFactory $articleWithSocialViewFactory,
     ) {
     }
 
@@ -32,13 +35,17 @@ class ListMyArticlesController extends AbstractController
 
         $results = $this->articleFinder->retrieveArticles($query);
 
-        $articles = $results->items();
+        $articlesWithLikes = array_map(
+            fn (Article $article) => $this->articleWithSocialViewFactory->create($article),
+            $results->items(),
+        );
+
         $pagination = [
             'page' => $page,
             'itemPerPage' => $itemPerPage,
             'totalResult' => $results->totalResult(),
         ];
 
-        return $this->render('editorial/list-my-articles.html.twig', ['articles' => $articles, 'pagination' => $pagination]);
+        return $this->render('editorial/list-my-articles.html.twig', ['articles' => $articlesWithLikes, 'pagination' => $pagination]);
     }
 }

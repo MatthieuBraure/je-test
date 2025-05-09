@@ -12,4 +12,6 @@ interface ArticleLikeCounter
      * @return array<int, int> mapping articleId => likeCount
      */
     public function countByIds(array $articleIds): array;
+
+    public function countByArticle(int $articleId): int;
 }

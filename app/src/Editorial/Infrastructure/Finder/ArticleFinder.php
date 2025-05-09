@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Editorial\Infrastructure\Finder;
 
-use App\Core\Application\Port\ArticleLikeCounter;
 use App\Editorial\Application\Query\GetArticles\RetrieveArticles;
 use App\Editorial\Domain\Finder\ArticleFinder as ArticleFinderInterface;
 use App\Editorial\Domain\Model\Article;
@@ -18,7 +17,6 @@ class ArticleFinder implements ArticleFinderInterface
     public function __construct(
         private readonly UserRepository $userRepository,
         private readonly Connection $connection,
-        private readonly ArticleLikeCounter $articleLikeCounter,
     ) {
     }
 
@@ -41,15 +39,12 @@ class ArticleFinder implements ArticleFinderInterface
         $user = $this->userRepository->get($query->userId());
 
         $results = [];
-        $articleIds = array_map(fn ($raw) => (int) $raw['id'], $data);
-        $likeCounts = $this->articleLikeCounter->countByIds($articleIds);
         foreach ($data as $rawArticle) {
             $releaseDate = $rawArticle['releaseDate'];
             if (\is_string($releaseDate)) {
                 $releaseDate = new \DateTimeImmutable($releaseDate);
             }
 
-            /** @var array<string|int> $data */
             $id = (int) $rawArticle['id'];
             $article = Article::create(
                 id: $id,
@@ -58,7 +53,6 @@ class ArticleFinder implements ArticleFinderInterface
                 user: $user,
                 releaseDate: $releaseDate,
                 status: (string) $rawArticle['status'],
-                likes: $likeCounts[$id] ?? 0,
             );
 
             $results[] = $article;

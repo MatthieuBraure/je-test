@@ -4,12 +4,9 @@ declare(strict_types=1);
 
 namespace App\Consulting\Infrastructure\Finder;
 
-use App\Consulting\Application\Port\ArticleLikePermission;
-use App\Consulting\Application\Port\ArticleLikeStatusProvider;
 use App\Consulting\Domain\Finder\ArticleFinder as ArticleFinderInterface;
 use App\Consulting\Domain\Model\Article;
 use App\Consulting\Domain\Model\User;
-use App\Core\Application\Port\ArticleLikeCounter;
 use App\Editorial\Domain\Model\Status;
 use Doctrine\DBAL\Connection;
 
@@ -17,13 +14,10 @@ class ArticleFinder implements ArticleFinderInterface
 {
     public function __construct(
         private readonly Connection $connection,
-        private readonly ArticleLikeCounter $articleLikeCounter,
-        private readonly ArticleLikeStatusProvider $articleLikeStatus,
-        private readonly ArticleLikePermission $articleLikePermission,
     ) {
     }
 
-    public function findAll(int $userId): array
+    public function findAll(): array
     {
         $sql = <<< 'SQL'
             SELECT a.id as id,
@@ -42,8 +36,6 @@ class ArticleFinder implements ArticleFinderInterface
 
         $results = [];
 
-        $articleIds = array_map(fn ($raw) => (int) $raw['id'], $data);
-        $likeCounts = $this->articleLikeCounter->countByIds($articleIds);
         foreach ($data as $rawArticle) {
             $releaseDate = $rawArticle['releaseDate'];
             if (\is_string($releaseDate)) {
@@ -57,9 +49,6 @@ class ArticleFinder implements ArticleFinderInterface
                 title: (string) $rawArticle['title'],
                 content: (string) $rawArticle['content'],
                 user: new User($rawArticle['userId'], $rawArticle['userFirstName'], $rawArticle['userLastName']),
-                likeCount: $likeCounts[$id] ?? 0,
-                hasLiked: $this->articleLikeStatus->hasLiked($id, $userId),
-                canLike: $this->articleLikePermission->canLike($id, $userId),
                 releaseDate: $releaseDate,
             );
 
